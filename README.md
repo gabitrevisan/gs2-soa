@@ -43,7 +43,7 @@ Este é o ponto de integração com o módulo IoT/Hardware.
 
 ---
 
-## 3. Infraestrutura e Execução Local 💻
+## 💻 3. Infraestrutura e Execução Local
 
 ### 3.1. Stack Tecnológica
 
@@ -70,18 +70,18 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ---
 
-## 4. Exemplos de Requisição para Teste (Postman/Swagger)
+## 📔 4. Exemplos de Requisição para Teste (Postman/Swagger)
 
 | Ação | Método | Rota | JSON Body (Exemplo) | Status |
 | :--- | :--- | :--- | :--- | :--- |
 | **Teste SOA/IoT** | `POST` | `/monitoramento` | `{"usuarioId": 1, "tipoAlerta": "inatividade", "timestamp": "2025-11-12T22:30:00"}` | **201** |
 | **Criar Usuário** | `POST` | `/recurso/usuarios` | `{"nome": "Dev Teste", "email": "dev@teste.com", "areaAtuacao": "TI", "nivelCarreira": "PLENO"}` | **201** |
 | **Atualizar Trilha** | `PUT` | `/recurso/trilhas/1` | `{"nome": "Ergonomia - Nível 1", "descricao": "Novo foco", "nivel": "INICIANTE", "cargaHoraria": 12, "focoPrincipal": "Físico"}` | **200** |
-| **Erro 404** | `DELETE` | `/recurso/usuarios/999` | (Nenhum) | **404** (Customizada) |
+| **Erro 404** | `DELETE` | `usuario-controller/deletar` | `(insira um valor de usuário inexistente, ex.: 333)` | **404** |
 
 ---
 
-## 5. Evidências de Teste de Funcionalidade (QA) 🖼️
+## 🖼️ 5. Evidências de Teste de Funcionalidade (QA) 
 
 Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação e Integração SOA), as seguintes evidências foram capturadas:
 
