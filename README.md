@@ -77,7 +77,7 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 | **Teste SOA/IoT** | `POST` | `/monitoramento` | `{"usuarioId": 1, "tipoAlerta": "inatividade", "timestamp": "2025-11-12T22:30:00"}` | **201** |
 | **Criar Usuário** | `POST` | `/recurso/usuarios` | `{"nome": "Dev Teste", "email": "dev@teste.com", "areaAtuacao": "TI", "nivelCarreira": "PLENO"}` | **201** |
 | **Atualizar Trilha** | `PUT` | `/recurso/trilhas/1` | `{"nome": "Ergonomia - Nível 1", "descricao": "Novo foco", "nivel": "INICIANTE", "cargaHoraria": 12, "focoPrincipal": "Físico"}` | **200** |
-| **Erro 404** | `DELETE` | `usuario-controller/deletar` | (insira um valor de usuário inexistente, ex.: 333) | **404** |
+| **Erro 404** | `DELETE` | `usuario-controller/deletar` | `(insira um valor de usuário inexistente, ex.: 333)` | **404** |
 
 ---
 
