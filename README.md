@@ -61,16 +61,12 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ### 3.3. Comandos para Execução
 
-1.  **Limpar e Gerar o JAR:**
+1.  **Executar o Servidor:** Use o comando Maven para iniciar o servidor.
     ```bash
-    mvn clean install -DskipTests
-    ```
-2.  **Executar o Servidor (Recomendado):** Execute o JAR diretamente para maior estabilidade do processo Java.
-    ```bash
-    java -jar target/ergomind-0.0.1-SNAPSHOT.jar
+    mvn spring-boot:run
     ```
 
-A API estará acessível em `http://localhost:8080` e a documentação interativa em `http://localhost:8080/swagger-ui.html`.
+2. A API estará acessível em `http://localhost:8080` e a documentação interativa em `http://localhost:8080/swagger-ui.html`.
 
 ---
 
@@ -82,3 +78,66 @@ A API estará acessível em `http://localhost:8080` e a documentação interativ
 | **Criar Usuário** | `POST` | `/recurso/usuarios` | `{"nome": "Dev Teste", "email": "dev@teste.com", "areaAtuacao": "TI", "nivelCarreira": "PLENO"}` | **201** |
 | **Atualizar Trilha** | `PUT` | `/recurso/trilhas/1` | `{"nome": "Ergonomia - Nível 1", "descricao": "Novo foco", "nivel": "INICIANTE", "cargaHoraria": 12, "focoPrincipal": "Físico"}` | **200** |
 | **Erro 404** | `DELETE` | `/recurso/usuarios/999` | (Nenhum) | **404** (Customizada) |
+
+---
+
+## 5. Evidências de Teste de Funcionalidade (QA) 🖼️
+
+Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação e Integração SOA), as seguintes evidências foram capturadas:
+
+<table style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Endpoint Testado</th>
+            <th>Cenário Verificado</th>
+            <th>Evidência</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>GET /recurso/usuarios</td>
+            <td>Listagem de Usuários (Seed Carregado)</td>
+            <td><img src="evidencias/get-recurso-usuarios.png" width="400" alt="Evidência do GET /usuarios"></td>
+        </tr>
+        <tr>
+            <td>GET /recurso/trilhas</td>
+            <td>Listagem de Trilhas (Seeds Carregadas)</td>
+            <td><img src="evidencias/get-recurso-trilhas.png" width="400" alt="Evidência do GET /trilhas"></td>
+        </tr>
+        <tr>
+            <td>POST /recurso/usuarios</td>
+            <td>Criação de Usuário (Status 201 Created)</td>
+            <td><img src="evidencias/post-cadastro-usuarios.png" width="400" alt="Evidência do POST /usuarios"></td>
+        </tr>
+        <tr>
+            <td>POST /monitoramento</td>
+            <td>Integração SOA/IoT (Status 201 Created)</td>
+            <td><img src="evidencias/monitoramento-integracao-iot.png" width="400" alt="Evidência da Integração IoT"></td>
+        </tr>
+        <tr>
+            <td>DELETE /recurso/usuarios/{id}</td>
+            <td>Tratamento de Exceção (Status 404 Not Found)</td>
+            <td><img src="evidencias/delete-usuario-teste-erro.png" width="400" alt="Evidência do 404 para DELETE"></td>
+        </tr>
+        <tr>
+            <td>POST /recurso/trilhas</td>
+            <td>Tratamento de Validação (Status 400 Bad Request)</td>
+            <td><img src="evidencias/post-cadastro-trilhas-teste-erro.png" width="400" alt="Evidência do 400 Bad Request"></td>
+        </tr>
+        <tr>
+            <td>Execução</td>
+            <td>Startup (Seeding Concluído no Terminal)</td>
+            <td><img src="evidencias/springbootrun-seeding-completo.png" width="400" alt="Evidência de Seeding por CommandLineRunner"></td>
+        </tr>
+        <tr>
+            <td>Geral</td>
+            <td>Swagger UI Carregado</td>
+            <td><img src="evidencias/swagger-inicial.png" width="400" alt="Evidência do Swagger UI"></td>
+        </tr>
+        <tr>
+            <td>Alerta IoT</td>
+            <td>Alerta IoT de Inatividade Emitido no Terminal</td>
+            <td><img src="evidencias/alerta-iot-terminal.png" width="400" alt="Alerta de Inatividade IoT"></td>
+        </tr>
+    </tbody>
+</table>
