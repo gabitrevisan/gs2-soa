@@ -43,7 +43,7 @@ Este é o ponto de integração com o módulo IoT/Hardware.
 
 ---
 
-## 3. Infraestrutura e Execução Local 💻
+## 💻 3. Infraestrutura e Execução Local
 
 ### 3.1. Stack Tecnológica
 
@@ -70,7 +70,7 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ---
 
-## 4. Exemplos de Requisição para Teste (Postman/Swagger)
+## 📔 4. Exemplos de Requisição para Teste (Postman/Swagger)
 
 | Ação | Método | Rota | JSON Body (Exemplo) | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -81,7 +81,7 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ---
 
-## 5. Evidências de Teste de Funcionalidade (QA) 🖼️
+## 🖼️ 5. Evidências de Teste de Funcionalidade (QA) 
 
 Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação e Integração SOA), as seguintes evidências foram capturadas:
 
