@@ -70,7 +70,17 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ---
 
-## 📔 4. Exemplos de Requisição para Teste (Postman/Swagger)
+## 🗂️ 4. Diagrama da Aplicação
+
+O diagrama ilustra a Arquitetura em Camadas (Controller, Service, Repository) da API, destacando o fluxo de integração do Endpoint IoT (`/monitoramento`) e o tratamento centralizado de exceções.
+
+<div align="center">
+    <img src="diagram.png" alt="Diagrama de Arquitetura em Camadas (Controller, Service, Repository)" width="600"/>
+</div>
+
+---
+
+## 📔 5. Exemplos de Requisição para Teste (Postman/Swagger)
 
 | Ação | Método | Rota | JSON Body (Exemplo) | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -81,7 +91,7 @@ O projeto foi configurado originalmente para o Oracle FIAP, mas, devido ao erro 
 
 ---
 
-## 🖼️ 5. Evidências de Teste de Funcionalidade (QA) 
+## 🖼️ 6. Evidências de Teste de Funcionalidade (QA) 
 
 Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação e Integração SOA), as seguintes evidências foram capturadas:
 
