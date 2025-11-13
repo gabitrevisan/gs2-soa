@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data; // Usando Lombok para Getters/Setters (opcional)
+import lombok.Data;
 
 @Entity
 @Table(name = "usuarios")
@@ -25,6 +25,5 @@ public class Usuario {
     private String email;
 
     private String areaAtuacao; 
-    private String nivelCarreira; 
-    // Data de cadastro pode ser gerada automaticamente (omito a lógica aqui por brevidade)
+    private String nivelCarreira;
 }

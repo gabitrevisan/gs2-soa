@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-@Hidden // <--- CORREÇÃO: Informa ao Swagger para ignorar esta classe
+@Hidden
 public class CustomExceptionHandler {
 
-    // 1. Trata erros de Bean Validation (@NotBlank, @Email, etc.) -> Status 400 Bad Request
+    // Trata erros de Bean Validation (@NotBlank, @Email, etc.) -> Status 400 Bad Request
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
@@ -21,22 +21,21 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro de Validação: " + errorMessage);
     }
 
-    // 2. Trata a exceção customizada de Usuario Não Encontrado -> Status 404 Not Found
+    // Trata a exceção customizada de Usuario Não Encontrado -> Status 404 Not Found
     @ExceptionHandler(UsuarioNaoEncontradoException.class)
     public ResponseEntity<Object> handleUsuarioNotFound(UsuarioNaoEncontradoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); // Status 404
     }
 
-    // 3. Trata a exceção customizada de Trilha Não Encontrada -> Status 404 Not Found
+    // Trata a exceção customizada de Trilha Não Encontrada -> Status 404 Not Found
     @ExceptionHandler(TrilhaNaoEncontradaException.class)
     public ResponseEntity<Object> handleTrilhaNotFound(TrilhaNaoEncontradaException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); // Status 404
     }
 
-    // 4. Tratamento de erro genérico para qualquer outra falha não mapeada -> Status 500 Internal Server Error
+    // Tratamento de erro genérico para qualquer outra falha não mapeada -> Status 500 Internal Server Error
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex) {
-        // O erro que estava ocorrendo no /v3/api-docs era tratado por este handler
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno no servidor: " + ex.getMessage());
     }
 }

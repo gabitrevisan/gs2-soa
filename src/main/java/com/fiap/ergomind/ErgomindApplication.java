@@ -16,15 +16,11 @@ public class ErgomindApplication {
 		SpringApplication.run(ErgomindApplication.class, args);
 	}
 
-	// NOVO MÉTODO: Data Seeding via CommandLineRunner para garantir que a inserção
-	// ocorra APÓS a criação das tabelas pelo Hibernate.
 	@Bean
 	public CommandLineRunner dataSeeder(UsuarioService usuarioService, TrilhaService trilhaService) {
 		return args -> {
-			
-			// ------------------------------------------
+		
 			// SEEDING TRILHAS
-			// ------------------------------------------
 			TrilhaDeAprendizagem trilha1 = new TrilhaDeAprendizagem();
 			trilha1.setNome("Ergonomia no Home Office");
 			trilha1.setDescricao("Aprenda a configurar seu espaço para evitar fadiga.");
@@ -41,9 +37,7 @@ public class ErgomindApplication {
 			trilha2.setFocoPrincipal("Competência Humana");
 			trilhaService.criar(trilha2);
 
-			// ------------------------------------------
 			// SEEDING USUÁRIOS
-			// ------------------------------------------
 			Usuario usuario1 = new Usuario();
 			usuario1.setNome("Aluno Exemplo");
 			usuario1.setEmail("aluno@fiap.com.br");

@@ -17,7 +17,6 @@ public class TrilhaDeAprendizagem {
     @NotBlank(message = "O nome da trilha é obrigatório.")
     private String nome;
 
-    // CORREÇÃO: Adiciona @Lob para mapear a String para CLOB (TEXTO LONGO) no Oracle.
     @Lob 
     private String descricao;
     

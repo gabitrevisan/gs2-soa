@@ -21,7 +21,6 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
     baseline-version: 0
-  # MUDANÇA CRÍTICA: Desativa a execução automática do data.sql
   sql:
     init:
       mode: never
