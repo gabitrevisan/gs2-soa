@@ -95,6 +95,16 @@ Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação 
     </thead>
     <tbody>
         <tr>
+            <td>Execução</td>
+            <td>Startup (Seeding Concluído no Terminal)</td>
+            <td><img src="evidencias/springbootrun-seeding-completo.png" width="400" alt="Evidência de Seeding por CommandLineRunner"></td>
+        </tr>
+        <tr>
+            <td>Geral</td>
+            <td>Swagger UI Carregado</td>
+            <td><img src="evidencias/swagger-inicial.png" width="400" alt="Evidência do Swagger UI"></td>
+        </tr>
+        <tr>
             <td>GET /recurso/usuarios</td>
             <td>Listagem de Usuários (Seed Carregado)</td>
             <td><img src="evidencias/get-recurso-usuarios.png" width="400" alt="Evidência do GET /usuarios"></td>
@@ -110,11 +120,6 @@ Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação 
             <td><img src="evidencias/post-cadastro-usuarios.png" width="400" alt="Evidência do POST /usuarios"></td>
         </tr>
         <tr>
-            <td>POST /monitoramento</td>
-            <td>Integração SOA/IoT (Status 201 Created)</td>
-            <td><img src="evidencias/monitoramento-integracao-iot.png" width="400" alt="Evidência da Integração IoT"></td>
-        </tr>
-        <tr>
             <td>DELETE /recurso/usuarios/{id}</td>
             <td>Tratamento de Exceção (Status 404 Not Found)</td>
             <td><img src="evidencias/delete-usuario-teste-erro.png" width="400" alt="Evidência do 404 para DELETE"></td>
@@ -124,15 +129,10 @@ Para comprovar a execução do ciclo de vida completo da API (CRUD, Validação 
             <td>Tratamento de Validação (Status 400 Bad Request)</td>
             <td><img src="evidencias/post-cadastro-trilhas-teste-erro.png" width="400" alt="Evidência do 400 Bad Request"></td>
         </tr>
-        <tr>
-            <td>Execução</td>
-            <td>Startup (Seeding Concluído no Terminal)</td>
-            <td><img src="evidencias/springbootrun-seeding-completo.png" width="400" alt="Evidência de Seeding por CommandLineRunner"></td>
-        </tr>
-        <tr>
-            <td>Geral</td>
-            <td>Swagger UI Carregado</td>
-            <td><img src="evidencias/swagger-inicial.png" width="400" alt="Evidência do Swagger UI"></td>
+            <tr>
+            <td>POST /monitoramento</td>
+            <td>Integração SOA/IoT (Status 201 Created)</td>
+            <td><img src="evidencias/monitoramento-integracao-iot.png" width="400" alt="Evidência da Integração IoT"></td>
         </tr>
         <tr>
             <td>Alerta IoT</td>
