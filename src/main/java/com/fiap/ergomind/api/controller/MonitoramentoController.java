@@ -7,24 +7,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/monitoramento") // Rota conforme requisito do GS
+@RequestMapping("/monitoramento") // Endpoint conforme o critério de aceite
 public class MonitoramentoController {
 
-    // POST /monitoramento - Recebe o alerta do dispositivo IoT
+    /**
+     * Simula o recebimento de dados do dispositivo IoT (Sensor de Postura/Fadiga).
+     * Este endpoint é o ponto de entrada da arquitetura SOA para a Feature 1.
+     * Retorna 201 Created conforme o critério de aceite.
+     * @param alerta Dados do sensor
+     * @return Resposta com status 201
+     */
     @PostMapping
     public ResponseEntity<String> receberAlerta(@Valid @RequestBody AlertaIotDTO alerta) {
         
-        // Simulação da Lógica de Serviço (Processamento do Alerta)
-        // 1. O AlertaIotDTO é validado pelo @Valid
-        // 2. Aqui a API (SOA) processaria a informação:
-        //    a. Logar o alerta no banco de dados.
-        //    b. Verificar regras de negócio (ex: 'inatividade' > 75 minutos [cite: 141]).
-        //    c. Acionar a notificação de pausa para o usuário.
+        // Simulação da lógica de negócio (Service Layer):
+        // 1. O AlertaIotDTO é validado pelo @Valid.
+        // 2. Aqui, a API (SOA) processaria a informação, por exemplo:
+        //    - Logar o alerta (Alerta: inatividade do usuário ID 1)
+        //    - Acionar a notificação de pausa para o usuário (Chamada a outro serviço/mecanismo)
         
-        System.out.println("Alerta IoT recebido para o Usuário ID: " + alerta.getUsuarioId());
-        System.out.println("Tipo: " + alerta.getTipoAlerta());
+        System.out.println("--- Alerta IoT Recebido ---");
+        System.out.println("Usuário ID: " + alerta.getUsuarioId());
+        System.out.println("Tipo de Alerta: " + alerta.getTipoAlerta());
+        System.out.println("Timestamp: " + alerta.getTimestamp());
+        System.out.println("---------------------------");
         
-        // Retorna Status 201 CREATED (Critério de Aceite: O dispositivo IoT deve enviar dados para o endpoint /monitoramento da API com sucesso (status 201) [cite: 141])
-        return ResponseEntity.status(HttpStatus.CREATED).body("Alerta de " + alerta.getTipoAlerta() + " registrado com sucesso. Pausa recomendada.");
+        // Retorna Status 201 CREATED (Critério de Aceite: O dispositivo loT deve enviar dados com sucesso - status 201)
+        return ResponseEntity.status(HttpStatus.CREATED).body("Alerta de " + alerta.getTipoAlerta() + " registrado com sucesso. Próxima ação: Notificação de pausa acionada.");
     }
 }

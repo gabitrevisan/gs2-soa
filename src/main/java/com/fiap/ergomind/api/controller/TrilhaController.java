@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/recurso/trilhas") // Rota: /recurso/trilhas
+@RequestMapping("/recurso/trilhas")
 public class TrilhaController {
 
     @Autowired
     private TrilhaService trilhaService;
 
-    // GET /recurso/trilhas - Lista todos (Status 200 OK)
+    // GET /recurso/trilhas - Lista todas (Status 200 OK)
     @GetMapping
     public List<TrilhaDeAprendizagem> listar() {
         return trilhaService.listarTodos();
@@ -25,7 +26,6 @@ public class TrilhaController {
     // GET /recurso/trilhas/{id} - Busca por ID (Status 200 OK ou 404 Not Found)
     @GetMapping("/{id}")
     public ResponseEntity<TrilhaDeAprendizagem> buscarPorId(@PathVariable Long id) {
-        // O mapeamento para 404 será tratado pela exceção customizada no Passo 2
         return trilhaService.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -41,16 +41,16 @@ public class TrilhaController {
     // PUT /recurso/trilhas/{id} - Atualiza registro (Status 200 OK ou 404 Not Found)
     @PutMapping("/{id}")
     public ResponseEntity<TrilhaDeAprendizagem> atualizar(@PathVariable Long id, @Valid @RequestBody TrilhaDeAprendizagem trilha) {
-        // OBS: O tratamento de erro 404 será feito pelo @RestControllerAdvice no Passo 2
+        // Se não encontrar, o Service lança a exceção que é tratada pelo CustomExceptionHandler
         TrilhaDeAprendizagem trilhaAtualizada = trilhaService.atualizar(id, trilha);
         return ResponseEntity.ok(trilhaAtualizada);
     }
 
-    // DELETE /recurso/trilhas/{id} - Remove registro (Status 204 No Content)
+    // DELETE /recurso/trilhas/{id} - Remove registro (Status 204 No Content ou 404 Not Found)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Long id) {
-        // OBS: O tratamento de erro 404 será feito pelo @RestControllerAdvice no Passo 2
+        // Se não encontrar, o Service lança a exceção que é tratada pelo CustomExceptionHandler
         trilhaService.deletar(id);
     }
 }

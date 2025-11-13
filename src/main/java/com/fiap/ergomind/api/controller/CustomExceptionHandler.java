@@ -1,7 +1,8 @@
 package com.fiap.ergomind.api.controller;
 
-import com.fiap.ergomind.api.service.exception.TrilhaNaoEncontradaException; // NOVO IMPORT
-import com.fiap.ergomind.api.service.exception.UsuarioNaoEncontradoException; // NOVO IMPORT
+import com.fiap.ergomind.api.service.exception.TrilhaNaoEncontradaException;
+import com.fiap.ergomind.api.service.exception.UsuarioNaoEncontradoException;
+import io.swagger.v3.oas.annotations.Hidden; // NOVO IMPORT NECESSÁRIO
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,12 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+@Hidden // <--- CORREÇÃO: Informa ao Swagger para ignorar esta classe
 public class CustomExceptionHandler {
 
     // 1. Trata erros de Bean Validation (@NotBlank, @Email, etc.) -> Status 400 Bad Request
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        // Mapeia o erro de validação em um formato legível
         String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro de Validação: " + errorMessage);
@@ -32,10 +33,10 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()); // Status 404
     }
 
-    // 4. Tratamento de erro genérico (opcional, mas bom para 500 Internal Server Error)
+    // 4. Tratamento de erro genérico para qualquer outra falha não mapeada -> Status 500 Internal Server Error
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex) {
-        // Logar o erro 'ex' completo aqui
+        // O erro que estava ocorrendo no /v3/api-docs era tratado por este handler
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno no servidor: " + ex.getMessage());
     }
 }

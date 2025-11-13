@@ -3,13 +3,12 @@ package com.fiap.ergomind.api.service;
 import com.fiap.ergomind.api.model.TrilhaDeAprendizagem;
 import com.fiap.ergomind.api.repository.TrilhaRepository;
 import com.fiap.ergomind.api.service.exception.TrilhaNaoEncontradaException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-// OBS: Este código será atualizado no Passo 2 para incluir as Exceções Customizadas.
 @Service
 public class TrilhaService {
 
@@ -29,7 +28,6 @@ public class TrilhaService {
     }
 
     public TrilhaDeAprendizagem atualizar(Long id, TrilhaDeAprendizagem trilhaAtualizada) {
-        // Encontra a trilha existente ou lança uma exceção (Será customizada no Passo 2)
         return trilhaRepository.findById(id).map(trilha -> {
             trilha.setNome(trilhaAtualizada.getNome());
             trilha.setDescricao(trilhaAtualizada.getDescricao());
@@ -41,9 +39,9 @@ public class TrilhaService {
     }
 
     public void deletar(Long id) {
-            if (!trilhaRepository.existsById(id)) {
-                throw new TrilhaNaoEncontradaException("Trilha de Aprendizagem não encontrada para exclusão (ID: " + id + ").");
-            }
-            trilhaRepository.deleteById(id);
+        if (!trilhaRepository.existsById(id)) {
+            throw new TrilhaNaoEncontradaException("Trilha de Aprendizagem não encontrada para exclusão (ID: " + id + ").");
         }
+        trilhaRepository.deleteById(id);
     }
+}
