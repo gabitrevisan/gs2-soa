@@ -2,6 +2,8 @@ package com.fiap.ergomind.api.service;
 
 import com.fiap.ergomind.api.model.Usuario;
 import com.fiap.ergomind.api.repository.UsuarioRepository;
+import com.fiap.ergomind.api.service.exception.UsuarioNaoEncontradoException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,12 +36,14 @@ public class UsuarioService {
             usuario.setEmail(usuarioAtualizado.getEmail());
             // Outras atualizações
             return usuarioRepository.save(usuario);
-        }).orElseThrow(() -> new RuntimeException("Usuario não encontrado para atualização.")); 
-        // Lidar com exceção de forma customizada, conforme requisito de tratamento de erros.
+        }).orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado para atualização (ID: " + id + ").")); 
     }
 
     // DELETE
     public void deletar(Long id) {
+        if (!usuarioRepository.existsById(id)) {
+            throw new UsuarioNaoEncontradoException("Usuário não encontrado para exclusão (ID: " + id + ")."); 
+        }
         usuarioRepository.deleteById(id);
     }
 }

@@ -40,18 +40,16 @@ public class UsuarioController {
     // PUT /recurso/usuarios/{id} - Atualiza registro
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
-        try {
-            Usuario usuarioAtualizado = usuarioService.atualizar(id, usuario);
-            return ResponseEntity.ok(usuarioAtualizado); // Status 200
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build(); // Status 404
-        }
+        // Se a atualização falhar, o Service lança a exceção que é tratada pelo Handler.
+        Usuario usuarioAtualizado = usuarioService.atualizar(id, usuario);
+        return ResponseEntity.ok(usuarioAtualizado); // Status 200
     }
 
     // DELETE /recurso/usuarios/{id} - Remove registro
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT) // Status 204
     public void deletar(@PathVariable Long id) {
+        // Se o recurso não for encontrado, o Service lança a exceção que é tratada pelo Handler.
         usuarioService.deletar(id);
     }
 }
