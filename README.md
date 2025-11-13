@@ -3,6 +3,8 @@
 ## 👩🏻‍💻 Desenvolvido por 👨🏻‍💻
 Gabriela Trevisan (RM99500), Eduardo Araujo (RM99758) e Rafael Franck (RM550875) - 3ESPW
 
+---
+
 ## 🎯 1. Identificação e Conceito Central
 
 | Item | Descrição |
